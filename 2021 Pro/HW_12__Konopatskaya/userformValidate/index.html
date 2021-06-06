@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HW.11 Online store prototype</title>
+  <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <h1>HW.12</h1>
+
+  <form class="userForm" name="userForm" action="#">
+    <div class="form-user border">
+      <h3>Регистрация</h3>
+      <label>Имя*
+        <input class="onvalidate" placeholder="Имя" name="username" type="text" value="" required />
+      </label>
+      <label>Фамилия*
+        <input class="onvalidate" placeholder="Фамилия" name="usersurname" type="text" value="" required />
+      </label>
+      <label>Пароль*
+        <input type="password" name="userpas" placeholder="password" value="" required />
+      </label>
+      <label>Телефон*
+        <input class="onvalidate" name="userphone" type="tel" value="" required />
+      </label>
+      <label>E-mail*
+        <input class="onvalidate" type="email" name="email" placeholder="E-mail" value="" required />
+      </label>
+      <label>Укажите ваш возраст*
+        <input type="number" name="age" min="18" max="99" placeholder="...лет" required />
+      </label>
+      <label>Укажите пол:
+        <input type="radio" name="gender" value="M" checked /> Мужской
+      </label>
+      <label>
+        <input type="radio" name="gender" value="F" /> Женский
+      </label> <br>
+      <label>
+        <input type="reset" value="Очисить" />
+      </label>
+      <label>
+        <input type="submit" class="btn" id="submitUserData" name="Validate" value="Отправить" />
+      </label>
+    </div>
+  </form>
+
+  <!-- <div class="viewform-container border">
+    <h2>Инфомация о заказанном товаре</h2>
+    <div class="view-formlist">
+
+    </div>
+
+  </div> -->
+
+
+
+
+
+  <script src="pattern.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HW.11 Online store prototype</title>
+  <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <h1>HW.11 Online store prototype</h1>
+  <div class="container">
+    <!------------------FORM 1------------------------>
+    <form class="subcontainer" name="productForm" action="#" method="get" enctype="">
+      <div class="form__wrapper border">
+        <h2>Каталог</h2>
+        <p> Выберите категорию</p>
+        <select id="category" name="category" required></select>
+      </div>
+
+
+      <div class="form__wrapper border">
+        <h2>Дополнителная информация о товаре</h2>
+
+        <p> Выберите товар:</p>
+        <select id="items" name="items" required></select>
+
+        <p>Характеристики:</p>
+        <div id="attributes"> </div>
+
+
+        <input id="btnBuy" type="submit" class="popup-link" href="#popup_log" disabled="true" value="Купить" />
+
+      </div>
+
+    </form>
+    <!------------------FORM 2------------------------>
+    <div id="popup_log" class="popup popup__log">
+      <div class="popup__body">
+        <div class="popup__content">
+          <div class="decor">
+            <a href="#" class="popup__close close-popup">X</a>
+            <form name="userForm" action="#">
+              <div class="form-user border">
+                <h3>Регистрация</h3>
+                <label>Имя*
+                  <input placeholder="Имя" name="username" type="text" value="" required />
+                </label>
+                <label>Фамилия*
+                  <input placeholder="Фамилия" name="usersurname" type="text" value="" required />
+                </label>
+                <label>Пароль*
+                  <input type="password" name="userpas" placeholder="password" value="" required />
+                </label>
+                <label>Телефон*
+                  <input name="userphone" type="tel" value="" required />
+                </label>
+                <label>E-mail*
+                  <input type="email" name="email" placeholder="E-mail" value="" required />
+                </label>
+                <label>Укажите ваш возраст*
+                  <input type="number" name="age" min="18" max="99" placeholder="...лет" required />
+                </label>
+                <label>Укажите пол:
+                  <input type="radio" name="gender" value="M" checked /> Мужской
+                </label>
+                <label>
+                  <input type="radio" name="gender" value="F" /> Женский
+                </label> <br>
+                <label>
+                  <input type="reset" value="Очисить" />
+                </label>
+                <label>
+                  <input type="submit" class="btn" id="submitUserData" value="Отправить" />
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viewform-container border">
+
+    <div class="view-productlist">
+      <h2>Инфомация о заказанном товаре</h2>
+      <!-- ---------------plase for product information--------- -->
+    </div>
+    <div class="view-userlist">
+      <h2>Инфомация о покупателе</h2>
+      <!-- ---------------plase for user information--------- -->
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+  <script src="pattern.js"></script>
+</body>
+
+</html>
