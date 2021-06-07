@@ -147,7 +147,7 @@ itemsSelect.addEventListener("change", function (el) {
 
 submitUsForm.addEventListener("click", function (el) {
 	//el.preventDefault();
-
+	//new coment
 	const category = productForm.elements.category.value;
 
 	const item = productForm.elements.items.value;
@@ -231,42 +231,42 @@ function showUser(resultObj) {
 
 
 userForm.addEventListener('submit', function (event) {
-        //event.preventDefault();
+	//event.preventDefault();
 
-        resultInput(userName, patName, "Именем");
-        resultInput(userSurname, patSurname, "Фамилией");
-        resultInput(userPhone, patTel, "Номером телефона");
-        resultInput(email, patMail, "e-mail");
+	resultInput(userName, patName, "Именем");
+	resultInput(userSurname, patSurname, "Фамилией");
+	resultInput(userPhone, patTel, "Номером телефона");
+	resultInput(email, patMail, "e-mail");
 
 
 })
 
 function resultInput(input, pattern, name) {
-        const chekIndex = input.value.search(pattern);
-        if (chekIndex === -1) {
-                input.setAttribute(placeholder,'Нужный текст')
+	const chekIndex = input.value.search(pattern);
+	if (chekIndex === -1) {
+		input.setAttribute(placeholder, 'Нужный текст')
 
-        }
+	}
 }
 
 
 
 
 userName.addEventListener('keyup', function () {
-        this.value = this.value.replace(/^./, this.value[0].toUpperCase());
-        const chekIndex = this.value.search(pattern);
-        if (chekIndex === -1) {
-               this.placeholder = 'Нужный текст';
-        }
+	this.value = this.value.replace(/^./, this.value[0].toUpperCase());
+	const chekIndex = this.value.search(pattern);
+	if (chekIndex === -1) {
+		this.placeholder = 'Нужный текст';
+	}
 });
 
 userSurname.addEventListener('keyup', function () {
-        this.value = this.value.replace(/^./, this.value[0].toUpperCase());
+	this.value = this.value.replace(/^./, this.value[0].toUpperCase());
 });
 
 // Replase letters from input phone to ""
 userPhone.addEventListener('keyup', function () {
-        this.value = this.value.replace(/[^\d]/g, '');
+	this.value = this.value.replace(/[^\d]/g, '');
 });
 
 
