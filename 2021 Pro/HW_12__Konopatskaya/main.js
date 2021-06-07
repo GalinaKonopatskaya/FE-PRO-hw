@@ -146,7 +146,7 @@ itemsSelect.addEventListener("change", function (el) {
 //     -----   Submit Forms   ------
 
 submitUsForm.addEventListener("click", function (el) {
-	el.preventDefault();
+	//el.preventDefault();
 
 	const category = productForm.elements.category.value;
 
@@ -188,7 +188,7 @@ function showProduct(resultObj) {
 
 
 submitUsForm.addEventListener('click', function (e) {
-	e.preventDefault();
+	//e.preventDefault();
 	const username = userForm.elements.username.value;
 	const usersurname = userForm.elements.usersurname.value;
 	const password = userForm.elements.userpas.value;
@@ -214,8 +214,8 @@ submitUsForm.addEventListener('click', function (e) {
 	showUser(result);
 
 
-	const popupActive = document.querySelector('.popup.open');
-	popupClose(popupActive, false);
+	// const popupActive = document.querySelector('.popup.open');
+	// popupClose(popupActive, false);
 
 });
 
@@ -231,7 +231,7 @@ function showUser(resultObj) {
 
 
 userForm.addEventListener('submit', function (event) {
-        event.preventDefault();
+        //event.preventDefault();
 
         resultInput(userName, patName, "Именем");
         resultInput(userSurname, patSurname, "Фамилией");
