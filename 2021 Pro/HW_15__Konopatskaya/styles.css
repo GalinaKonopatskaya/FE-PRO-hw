@@ -1,0 +1,52 @@
+.container {
+        width: 100%;
+        height: inherit;
+        
+}
+.converter {
+        text-align: center;
+        border: 2px solid black;
+        padding: 15px;
+}
+
+.container .converter form {
+        display: flex;
+        justify-content: center ;
+}
+
+p {
+        padding: 10px;
+        margin: 20px;
+}
+
+button,
+select,
+input {
+        
+        font-size: large;
+        padding: 10px;
+        margin: 20px;
+}
+
+input {
+        width: 100px;
+}
+
+#result {
+        border:2px solid black;
+        height: max-content;
+        padding: 10px;
+        margin: 20px;
+        font-size: large;
+        min-width: 25px;
+        min-height: 20px;
+}
+
+
+/* .container .converter form button {}
+.container .converter form button:hover {}
+.container .converter form button:active {}
+.container .converter form button:focus {}
+.container .converter form input {}
+.container .converter form select {}
+.container .converter form input {} */

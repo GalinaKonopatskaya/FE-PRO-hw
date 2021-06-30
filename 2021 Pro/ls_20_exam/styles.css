@@ -1,0 +1,35 @@
+.main {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.description {
+    background: silver;
+}
+
+.container {
+    height: 50%;
+    width: 50%;
+    border: 1px solid;
+}
+
+.header {
+    display: flex;
+    gap: 10px;
+}
+.content {
+    height: 93%;
+}
+
+p.info {
+    font-size: 20px;
+    color: greenyellow;
+}
+
+p.data {
+    font-size: 20px;
+    color: red;
+}
+

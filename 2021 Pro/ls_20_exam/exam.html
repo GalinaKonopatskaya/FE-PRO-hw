@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="description">
+    <p>По клику на button info в контейнер выводится info - content. </p>
+    <p>Цвет кнопки становится зелёным (кнопка data - становится дэфолтного цвета) </p>
+    <p> По клику на button data в контейнер выводится data - content.  </p>
+    <p>Цвет кнопки становится красным (кнопка info - становится дэфолтного цвета) </p>
+    <p>По клику в любом месте документа все возвращается в дефолтное состояние </p>
+
+  </div>
+  <div class="main">
+    <div class="container" id="container">
+      <div class="header">
+        <button id="info" data-type="info">Info</button>
+        <button id="data" data-type="data">Data</button>
+      </div>
+      <div class="content"></div>
+    </div>
+  </div>
+<script src="exam2.js"></script>
+</body>
+</html>
