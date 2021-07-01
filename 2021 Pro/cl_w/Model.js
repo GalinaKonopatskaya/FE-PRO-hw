@@ -5,8 +5,8 @@ function JokeModel() {
         this.iconUrl = null;
 
 }
+// let model = new JokeModel() // {id: null, value: null, iconUrl: null}
 
-//let model = new JokeModel ();
 
 JokeModel.prototype.onLoad  = function (url) {
         return fetch(url)
@@ -21,5 +21,4 @@ JokeModel.prototype.onLoad  = function (url) {
         .catch(err => console.log("Err in fatch", err))
 }
 
-
-
+// TODO: implement getData() =>  {value, iconUrl}
