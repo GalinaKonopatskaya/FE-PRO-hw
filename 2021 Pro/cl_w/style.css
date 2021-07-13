@@ -1,0 +1,54 @@
+a {
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+}
+
+body {
+        width: 100%;
+        height: 100%;
+        font: 16px/1.5 "Courier New", Arial, sans-serif;
+        display: block;
+        margin: 8px;
+        overflow: auto;
+    }
+
+
+
+header {
+    text-align: center;
+    height: max-content;
+    margin: 20px;
+}
+
+h1 {
+        display: block;
+        font-size: 2em;
+        margin-block-start: 0.67em;
+        margin-block-end: 0.67em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+    }
+
+    .hvr-buzz-out {
+        display: inline-block;
+        vertical-align: middle;
+        box-shadow: 0 0 1px rgb(0 0 0 / 0%);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        
+    }
+
+    /* .hvr-buzz-out:hover, 
+    .hvr-buzz-out:focus, 
+    .hvr-buzz-out:active {
+    } */
+
+
+    #main {
+        text-align: center;
+        height: max-content;
+        max-width: 50%;
+        margin: 20px auto;
+    }
