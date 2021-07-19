@@ -1,44 +1,134 @@
+'use strict'
+
+
+
+
+const fs = require('fs');
 const express = require('express');
-//const cors = require('cors');
-const bodyParser = require('body-parser');
-const path = require('path');
-
-
 const app = express();
-const port = 3322;
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const conf = require('./config'); // конфиги
 
-app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => res.render('index.ejs'));
 
-app.listen(port, () => {
-   console.log('Server starting on port: ' + port);
+// -- экспорт своих классов помощников
+const { Product } = require('./source/product');
+const { ProductGroup } = require('./source/productGroup');
+const { Model } = require('./source/model');
+
+
+
+
+app.set('view engine', 'ejs')  // шаблонизатор
+//app.use(cors()); //прослойка для cors запросов
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+app.use('/', express.static('public'));
+
+
+//---- маршруты
+
+app.get('/test', function (req, res) {
+
+
+  let id = req.query.id;
+
+  res.render('test', { id: id });
+
 });
 
-// app.use(cors()); //прослойка для cors запросов
-// app.use(bodyParser.json())
+app.get('/product_container.ejs', (req, res) => res.render('product_container.ejs'));
 
-
-app.get('/index', function (req, res) {
-   res.send('Home Page!');
-});
-
-
-app.use('/public', express.static(path.join(__dirname, 'public')));
-
-
-
-app.post('/index', (req, res) => {
-   res.send({ data: "Success" })
-});
 
 
 app.get('/', function (req, res) {
-   res.send('Home Page!');
+
+  fs.readFile("./database/groups.json", "utf-8",
+    function (error, data) {
+      if (error) throw error; // если возникла ошибка
+
+      let groups = JSON.parse(data)
+
+      res.render('home', { groups: groups });
+
+    })
+
 });
 
-app.post('/index', (req, res) => {
-   res.send("Success")
+
+
+
+
+app.get('/category', function (req, res) {
+
+
+  fs.readFile("./database/products.json", "utf8",
+    function (error, data) {
+
+      if (error) throw error; // если возникла ошибка
+
+      let products = JSON.parse(data)
+      let category = [];
+
+      products.forEach(el => {
+        if (el.group == req.query.id) {
+          category.push(el);
+        }
+      })
+
+
+      fs.readFile("./database/groups.json", "utf-8",
+        function (error, data) {
+          if (error) throw error; // если возникла ошибка
+
+          let groups = JSON.parse(data)
+
+
+          res.render('allProducts', { products: category, groups: groups, title: req.query.group });
+
+        })
+
+    });
+
 });
 
-module.exports = app;
+
+
+
+app.get('/allproducts', (req, res) => {
+
+
+  fs.readFile("./database/products.json", "utf8",
+    function (error, data) {
+
+      if (error) throw error; // если возникла ошибка
+
+      let products = JSON.parse(data)
+
+      fs.readFile("./database/groups.json", "utf-8",
+        function (error, data) {
+          if (error) throw error; // если возникла ошибка
+
+          let groups = JSON.parse(data)
+
+          res.render('allProducts', { products: products, groups: groups, title: "Вся продукция" });
+
+        })
+
+    });
+
+});
+
+
+
+
+app.listen(conf.PORT, () => {
+  console.log('Server starting on port: ' + conf.PORT);
+});
+
+
+
+
+

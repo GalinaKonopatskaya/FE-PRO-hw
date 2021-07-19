@@ -1,0 +1,26 @@
+
+
+
+@media (min-width: 992px) {
+//         .container {
+//             width: 970px;
+//         }
+
+   }
+  
+  
+  @media (min-width: 768px) {
+        // .container {
+        //     width: 750px;
+        // }
+        .product-card {
+            width: 33.333%;
+      }
+  }
+
+  @media (min-width: 450px) {
+
+      .product-card {
+            width: 50%;
+      }
+  }
