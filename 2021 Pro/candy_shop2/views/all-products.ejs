@@ -1,0 +1,25 @@
+<li class="product-card">
+        <% products.forEach(function(product){ %>
+            <figure>
+                <img class="product-img" src="/images/img/ <%= product.img %>">
+                <figcaption>
+                    <a href="/product?id=<%= group.id %>&name=<%= product.name %>" class="border-button">
+                        <h2>
+                            <%= product.name %>
+                        </h2>
+                    </a>
+                    <div class="cost">
+                        <h3 class="price"> Цена за 1шт. <%= product.cost %>
+                        </h3>
+                        <h3 class="price"> Итого: 00.00</h3>
+                    </div>
+
+                    <div class="quantity">
+                        <input type="number" id="count" min="0" value="0">
+                    </div>
+                    <button type="button">В корзину</button>
+                </figcaption>
+                <% }); %>
+            </figure>
+    </li>
+

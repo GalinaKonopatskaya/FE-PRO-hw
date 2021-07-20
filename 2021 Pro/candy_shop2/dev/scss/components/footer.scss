@@ -1,0 +1,73 @@
+@import "../common/vars.scss";
+@import "../common/common.scss";
+
+@import "../common/varMixin.scss";
+
+footer {
+    background-color: rgba(51, 51, 51, 0.6);
+    min-height: 30px;
+    padding: 5px;
+    
+    .container {
+        display: flex;
+        max-width: $max-width;
+        margin: 0 auto;
+        justify-content: space-between;
+        align-items: center;
+        @include  adaptiv-font(14, 10);
+        color: #ffffff;
+        padding: 5px;
+
+        .design {
+            display: flex;
+        }
+        
+    }
+
+
+    .to-top {
+        padding: 10px 20px;
+        border-radius: 50%;
+        font-size: 30px;
+        color: #5e5e5c;
+        position: fixed;
+        bottom: 50px;
+        right: 10px;
+
+            svg {
+                background: antiquewhite;
+                padding: 5px;
+                border-radius: 50%;
+                border: 1px solid rgb(70, 34, 9);
+                g {
+                    fill: rgb(70, 34, 9);
+                }
+            }
+    }
+    
+    .to-top:hover {
+        color: #fffffb;
+    }
+}
+
+@media (max-width:768px) {
+    footer {
+        padding: 5px;
+        .container {
+            flex-direction: column;
+            justify-content: center;
+            padding: 5px 0;
+            .footer__contacts {
+                padding: 5px 0;
+                display: flex;
+                flex-basis: 50%;
+                flex-wrap: wrap;
+                justify-content: center;
+                a {
+                    padding: 5px 0;
+                }
+            }
+        }
+    
+}
+}
