@@ -2,92 +2,100 @@
 
 const CandyShop = {
 
-        init: async function () {
-                let data = await this.Data.load("/database/products.json");
-                this.onDataLoaded(data);
+        init() {
+
+                this.buildOrderList();
+                this. sendOrderData();
 
         },
-
-        onDataLoaded(data) {
-                this.Data.products = data.map(function (obj) {
-                        //console.log(typeof Candy);
-                        let candy = new Candy(obj.name, obj.url, obj.cost, obj.info, obj.id);
-
-                        return candy;
-
-                });
-                // this.Data.groups = data.map(function (obj) {
-                //         //console.log(typeof Candy);
-                //         let group = new Group (obj.groupName, obj.groupInfo);
-                //
-                //         obj.products.forEach((product) =>{
-                //          let candy =  new Candy(candy.name, candy.url, candy.cost, candy.info);
-                //          group.addCandy(candy)
-                //         return group});
-                // });
-
-                this.bildProductsList();
-        },
-
-        bildProductsList() {
-
-                let viewProducts = new View();
-                let str = "";
-                this.Data.products.forEach(function (products) {
-                        str += viewProducts.getProductsHtml(products);
-                })
-                this.Dom.$containerForProductList.innerHTML = str;
-                this.Dom.$containerForProductList("change", this.EventHandlers.chandeHandler)
-
-        },
-
-        EventHandlers : {
-                
-                chandeHandler
-
-        },
-
-
 
         Dom: {
-                $containerForProductList: document.getElementById("productList")
+                $containerForProductList: document.getElementById("productList"),
+                $productCart: document.getElementsByClassName("product-card"),
+                $buyBtn: document.querySelectorAll(".buyBtn"),
+                $quantityBtns: document.getElementsByClassName("quantity-change"),
+                $inputs: document.querySelectorAll(".input"),
+                $cartButton: document.getElementById("cart-btn"),
+        },
+
+        buildOrderList() {
+                let orderList = {};
+
+                localStorage.setItem('orderList', JSON.stringify(orderList));
+
+                this.Dom.$buyBtn.forEach((buttonItem) =>
+                                                buttonItem.addEventListener('click', this.EventHandlers.clickHandler));
+
+                this.Dom.$inputs.value = "";
+        },
+
+        sendOrderData(){
+
+                this.Dom.$cartButton.addEventListener('click', this.EventHandlers.sendCartData);
+
+        },
+
+        changeCartQuantity(){
+
+        },
+
+        EventHandlers: {
+
+                clickHandler(e) {
+                        let orderList = JSON.parse(localStorage.getItem('orderList'));
+
+                        let candyId = e.target.getAttribute("data-candy_id");
+
+                        let cost = +e.target.getAttribute("data-cost");
+
+                        let quantity = +document.querySelector('input[data-id="' + candyId + '"]').value;
+
+
+                        console.log(orderList);
+
+                        quantity = (
+                                typeof orderList['item' + candyId] !== 'undefined' ? 
+
+                                orderList['item' + candyId].quantity : 0
+
+                                         ) + quantity;
+
+                        orderList['item' + candyId] = {
+
+                                candyId, cost, quantity
+                        };
+
+                        console.log(candyId, `quant="${quantity}"`);
+
+                        localStorage.setItem('orderList', JSON.stringify(orderList));
+
+                        
+                },
+
+                sendCartData() {
+                        let data = localStorage.getItem('orderList');
+
+                        let fetchData = {
+                                method: 'POST',
+                                body: JSON.stringify(data),
+                                headers: {
+                                        'Content-Type': 'application/json;charset=utf-8'
+                                },
+                        }
+
+                        fetch("api/candyshop/cart", fetchData)
+                        
+                                .then(response => response.json())
+
+                                .then(result => console.log(result))
+                },
 
 
         },
 
-        Data: {
-                load(path) {
-                        return new Promise(function (resolve, reject) {
-                                let xhr = new XMLHttpRequest;
-                                xhr.open("GET", path, true);
-                                xhr.onload = function () {
-                                        try {
-                                                let d = JSON.parse(this.responseText);
-                                                resolve(d);
-
-                                        } catch (e) {
-                                                reject("Error while parsing JSON!!!");
-                                        }
-
-                                };
-                                xhr.onerror = function () {
-                                        reject("Error while loading data!!!");
-                                }
-                                xhr.send(null);
-                        })
-                },
-
-                products: []
-        }
 }
 
 
 CandyShop.init();
-
-
-
-
-
-
 
 

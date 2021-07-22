@@ -232,37 +232,37 @@ userPhone.addEventListener('keyup', function () {
 
 
 
-// // ANIMATION
+// ANIMATION
 
-// const animashki = document.querySelectorAll('.anim-item');
+const animashki = document.querySelectorAll('.anim-item');
 
-// if (animashki.length > 0) {
-//         window.addEventListener('scroll', animOnScroll);
-//         function animOnScroll() {
-//                 for (let index = 0; index < animashki.length; index++) {
-//                         const animashka = animashki[index];
-//                         const animashkaHeight = animashka.offsetHeight;
-//                         const animashkaOffset = offset(animashka).top;
-//                         const animStart = 4;
+if (animashki.length > 0) {
+        window.addEventListener('scroll', animOnScroll);
+        function animOnScroll() {
+                for (let index = 0; index < animashki.length; index++) {
+                        const animashka = animashki[index];
+                        const animashkaHeight = animashka.offsetHeight;
+                        const animashkaOffset = offset(animashka).top;
+                        const animStart = 4;
 
-//                         let animashkaPoint = window.innerHeight - animashkaHeight / animStart;
-//                         if (animashkaHeight > window.innerHeight) {
-//                                 animashkaPoint = window.innerHeight - animashkaHeight / animStart;
-//                         }
-//                         if ((pageYOffset > animashkaOffset - animashkaPoint) && pageYOffset < (animashkaOffset + animashkaHeight)) {
-//                                 animashka.classList.add('_active');
-//                         } else {
-//                                 animashka.classList.remove('_active');
-//                         }
-//                 }
-//         }
+                        let animashkaPoint = window.innerHeight - animashkaHeight / animStart;
+                        if (animashkaHeight > window.innerHeight) {
+                                animashkaPoint = window.innerHeight - animashkaHeight / animStart;
+                        }
+                        if ((pageYOffset > animashkaOffset - animashkaPoint) && pageYOffset < (animashkaOffset + animashkaHeight)) {
+                                animashka.classList.add('_active');
+                        } else {
+                                animashka.classList.remove('_active');
+                        }
+                }
+        }
 
-//         function offset(el) {
-//                 const rect = el.getBoundingClientRect(),
-//                         scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-//                         scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-//                 return { top: rect.top + scrollTop, left: rect.left + screenLeft }
-//         }
-//         animOnScroll();
-// }
+        function offset(el) {
+                const rect = el.getBoundingClientRect(),
+                        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+                        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                return { top: rect.top + scrollTop, left: rect.left + screenLeft }
+        }
+        animOnScroll();
+}
 

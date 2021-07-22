@@ -1,5 +1,6 @@
 <%- include ('layout/header.ejs'); -%>
 
+
     <div class="container">
         <h1>Home</h1>
         <div class="slider">
@@ -12,6 +13,21 @@
         <button class="slider-prev">Prev</button>
         <button class="slider-next">Next</button>
 
+
+
+        <div class="select-grupe">
+            <select name="sortProduct" id="productSelectBy">
+                <option value="all">Все товары</option>
+                <option value="priceLow">Цена по убыванию</option>
+                <option value="priceHigh">Цена по возрастанию</option>
+                <option value="newProduct">Новинки</option>
+                <option value="promotions">Акционные</option>
+            </select>
+            <select name="categoriSelect" id="categoriSelect">
+                <option value="">Выберите категорию</option>
+
+            </select>
+        </div>
 
         <div id="renderProduct">
             <div class="select-grupe">
@@ -28,11 +44,31 @@
                 </select>
             </div>
 
-
             <ul id="productList">
-   
+                <% products.forEach(function(product){ %>
+                    <li class="product-card">
+                        <figure>
+                            <img class="product-img" src="/images/img/ <%= product.img %>">
+                            <figcaption>
+                                <a href="/product?id=<%= group.id %>&name=<%= product.name %>" class="border-button">
+                                    <h2>
+                                        <%= product.name %>
+                                    </h2>
+                                </a>
+                                <div class="cost">
+                                    <h3 class="price"> Цена за 1шт. <%= product.cost %>
+                                    </h3>
+                                    <h3 class="price"> Итого: 00.00</h3>
+                                </div>
 
-                <%- include ('all-products.ejs'); -%>
+                                <div class="quantity">
+                                    <input type="number" id="count" min="0" value="0">
+                                </div>
+                                <button type="button">В корзину</button>
+                            </figcaption>
+                            <% }); %>
+                        </figure>
+                    </li>
 
 
             </ul>
@@ -42,16 +78,14 @@
 
 
 
-
-    </div>
-
-    <!-- how to style discount
+        <!-- how to style discount
         <div class="price discount"><span>$17.00</span> $13.60</div> 
     .price span{color: #333;
         text-decoration: line-through;
         margin-right: 3px;
     }
     discount{ color: #e74c3c;; }
+
     -->
 
-    <%- include ('layout/footer.ejs'); -%>
+        <%- include ('layout/footer.ejs'); -%>

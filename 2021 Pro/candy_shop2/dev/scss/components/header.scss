@@ -85,7 +85,7 @@
                                 .main-phone {
                                         text-align: center;
                                 
-                                        span  {
+                                        a  {
                                         @include centerTextStyle(5px, 0px, 0px, 5px);
                                         }
                                 }
@@ -97,7 +97,7 @@
 
                                         li {
                                                 padding: 5px;
-                                                span {
+                                                a {
                                                         @include centerTextStyle(5px, 0px, 0px, 5px);
  
 
@@ -137,23 +137,27 @@
                         }
                         .cart {
 
-                                .cart-btn {
+                                button {
                                         background: none;
                                         position: relative;
-                                }
-                                .cart-total {
-                                        position: absolute;
-                                        right: 14px;
-                                        bottom: 0px;
 
-                                        margin: 0;
-
-                                        font-size: 2.8em;
-                                        font-weight: 600;
-
-                                        text-shadow: none;
-
-                                        color: coral;
+                                        .cart-btn {
+                                                background: none;
+                                        }
+                                        .cart-total {
+                                                position: absolute;
+                                                right: 14px;
+                                                bottom: 0px;
+        
+                                                margin: 0;
+        
+                                                font-size: 2.8em;
+                                                font-weight: 600;
+        
+                                                text-shadow: none;
+        
+                                                color: coral;
+                                        }
                                 }
                          } 
                 }

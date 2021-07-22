@@ -1,27 +1,24 @@
 {
-  "name": "projecthillel",
+  "name": "candy_shop",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "candy shop",
+  "main": "index.html",
+  "dependencies": {
+    "browser-sync": "^2.27.4",
+    "gulp": "^4.0.2"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GalinaKonopatskaya/Candy-shop.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "cssnano": "^5.0.6",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "firebase": "^8.7.1",
-    "gulp-autoprefixer": "^8.0.0",
-    "gulp-sass": "^5.0.0",
-    "sass": "^1.35.2"
+  "bugs": {
+    "url": "https://github.com/GalinaKonopatskaya/Candy-shop/issues"
   },
-  "devDependencies": {
-    "gulp": "^4.0.2"
-  }
+  "homepage": "https://github.com/GalinaKonopatskaya/Candy-shop#readme"
 }

@@ -1,8 +1,6 @@
 'use strict'
 
 
-
-
 const fs = require('fs');
 const express = require('express');
 const app = express();
@@ -42,36 +40,36 @@ app.get('/product_container', (req, res) => res.render('product_container.ejs'))
 
 
 
-app.get('/',  (req, res) => {
+app.get('/', (req, res) => {
 
   Promise.all([Model.getProducts(), Model.getGroups()]).then((values) => {
 
     let products = JSON.parse(values[0])
     let groups = JSON.parse(values[1])
 
-    res.render('products', {products: products, groups:groups, title: "Вся продукция"});
+    res.render('products', { products: products, groups: groups, title: "Вся продукция" });
 
   })
-     
+
 });
 
 
-app.get('/category', function(req, res) {
+app.get('/category', function (req, res) {
 
   Promise.all([Model.getProducts(), Model.getGroups()]).then((values) => {
 
     let products = JSON.parse(values[0])
     let groups = JSON.parse(values[1])
-    
+
 
     let category = [];
-    products.forEach(el =>{
-      if(el.group == req.query.id ){
+    products.forEach(el => {
+      if (el.group == req.query.id) {
         category.push(el);
       }
     })
 
-    res.render('products', {products: category, groups:groups, title: req.query.group});
+    res.render('products', { products: category, groups: groups, title: req.query.group });
 
   })
 
@@ -82,7 +80,7 @@ app.get('/category', function(req, res) {
 
 
 
-app.get('/product',  (req, res) => {
+app.get('/product', (req, res) => {
 
   Promise.all([Model.getProducts(), Model.getGroups()]).then((values) => {
 
@@ -91,17 +89,109 @@ app.get('/product',  (req, res) => {
     let groups = JSON.parse(values[1])
     let product = null;
 
-    products.forEach(el =>{
-      if(el.id == req.query.id ){
+    products.forEach(el => {
+      if (el.id == req.query.id) {
         product = el
       }
     })
 
-    res.render('product', {product: product, groups:groups});
+    res.render('product', { product: product, groups: groups });
 
   })
-     
+
 });
+
+
+
+
+app.get('/contacts', (req, res) => {
+
+  Promise.all([Model.getProducts(), Model.getGroups()]).then((values) => {
+
+
+    let products = JSON.parse(values[0])
+    let groups = JSON.parse(values[1])
+    let product = null;
+
+    products.forEach(el => {
+      if (el.id == req.query.id) {
+        product = el
+      }
+    })
+
+    res.render('contacts', { product: product, groups: groups });
+
+  })
+
+});
+
+app.get('/delivery', (req, res) => {
+
+  Promise.all([Model.getProducts(), Model.getGroups()]).then((values) => {
+
+
+    let products = JSON.parse(values[0])
+    let groups = JSON.parse(values[1])
+    let product = null;
+
+    products.forEach(el => {
+      if (el.id == req.query.id) {
+        product = el
+      }
+    })
+
+    res.render('delivery', { product: product, groups: groups });
+
+  })
+
+});
+
+
+app.get('/cart', (req, res) => {
+
+  Promise.all([Model.getProducts(), Model.getGroups()]).then((values) => {
+
+
+    let products = JSON.parse(values[0])
+    let groups = JSON.parse(values[1])
+    let product = null;
+
+    products.forEach(el => {
+      if (el.id == req.query.id) {
+        product = el
+      }
+    })
+
+    res.render('cart', { product: product, groups: groups });
+
+  })
+
+});
+
+
+
+app.get('/error', (req, res) => {
+
+  Promise.all([Model.getProducts(), Model.getGroups()]).then((values) => {
+
+
+    let products = JSON.parse(values[0])
+    let groups = JSON.parse(values[1])
+    let product = null;
+
+    products.forEach(el => {
+      if (el.id == req.query.id) {
+        product = el
+      }
+    })
+
+    res.render('error', { product: product, groups: groups });
+
+  })
+
+});
+
+
 
 
 
