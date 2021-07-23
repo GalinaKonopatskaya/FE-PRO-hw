@@ -5,7 +5,7 @@ const CandyShop = {
         init() {
 
                 this.buildOrderList();
-                this. sendOrderData();
+                this.sendOrderData();
 
         },
 
@@ -24,18 +24,18 @@ const CandyShop = {
                 localStorage.setItem('orderList', JSON.stringify(orderList));
 
                 this.Dom.$buyBtn.forEach((buttonItem) =>
-                                                buttonItem.addEventListener('click', this.EventHandlers.clickHandler));
+                        buttonItem.addEventListener('click', this.EventHandlers.clickHandler));
 
                 this.Dom.$inputs.value = "";
         },
 
-        sendOrderData(){
+        sendOrderData() {
 
                 this.Dom.$cartButton.addEventListener('click', this.EventHandlers.sendCartData);
 
         },
 
-        changeCartQuantity(){
+        changeCartQuantity() {
 
         },
 
@@ -49,19 +49,19 @@ const CandyShop = {
                         let cost = +e.target.getAttribute("data-cost");
 
                         let quantity = +document.querySelector('input[data-id="' + candyId + '"]').value;
-                        
-                        
+
+
                         console.log(orderList);
-                        
+
                         quantity = (
-                                typeof orderList['item' + candyId] !== 'undefined' ? 
-                                
-                                orderList['item' + candyId].quantity : 0
-                                
-                                ) + quantity;
-                                
+                                typeof orderList['item' + candyId] !== 'undefined' ?
+
+                                        orderList['item' + candyId].quantity : 0
+
+                        ) + quantity;
+
                         let totalCost = cost * quantity;
-                        
+
                         orderList['item' + candyId] = {
 
                                 candyId, totalCost, quantity
@@ -71,7 +71,7 @@ const CandyShop = {
 
                         localStorage.setItem('orderList', JSON.stringify(orderList));
 
-                        
+
                 },
 
                 sendCartData() {
@@ -86,7 +86,7 @@ const CandyShop = {
                         }
 
                         fetch("api/candyshop/cart", fetchData)
-                        
+
                                 .then(response => response.json())
 
                                 .then(result => console.log(result))
