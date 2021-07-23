@@ -49,20 +49,22 @@ const CandyShop = {
                         let cost = +e.target.getAttribute("data-cost");
 
                         let quantity = +document.querySelector('input[data-id="' + candyId + '"]').value;
-
-
+                        
+                        
                         console.log(orderList);
-
+                        
                         quantity = (
                                 typeof orderList['item' + candyId] !== 'undefined' ? 
-
+                                
                                 orderList['item' + candyId].quantity : 0
-
-                                         ) + quantity;
-
+                                
+                                ) + quantity;
+                                
+                        let totalCost = cost * quantity;
+                        
                         orderList['item' + candyId] = {
 
-                                candyId, cost, quantity
+                                candyId, totalCost, quantity
                         };
 
                         console.log(candyId, `quant="${quantity}"`);
