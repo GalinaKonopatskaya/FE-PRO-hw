@@ -31,7 +31,7 @@
 
     <div id="productList">
       <% products.forEach(function(product){ %>
-        <div class="product-card" data-id="card-<%= product.id %>">
+        <div class="product-card" data-product_id="<%= product.id %>">
 
           <figure>
             <img class="product-img" src="../images/img/<%= product.url %>">
@@ -42,26 +42,27 @@
                 </h2>
               </a>
               <div class="cost">
-                <p class="price"> Цена за 1шт. <%= product.cost %>
+                <p class="prise"> Цена за 1шт. <%= product.cost %>
                 </p>
-                <p class="total-price"> Итого: 00.00</p>
+                <p class="total-prise" data-product_id="<%= product.id %>"> Итого: <span class="totalCost"> 00.00
+                  </span> </p>
 
               </div>
               <div class="cart">
                 <div class="number">
 
                   <button class="quantity-change number-minus" type="button"
-                    onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange;">-</button>
+                    onclick="this.nextElementSibling.stepDown();this.nextElementSibling.dispatchEvent(new Event('change'));">-</button>
 
-                  <input class="input" placeholder="0" data-id="<%= product.id %>" data-action="Change-quantity"
-                    type="number" min="0" value="">
+                  <input class="input" placeholder="0" data-cost="<%= product.cost %>"
+                    data-product_id="<%= product.id %>" data-action="Change-quantity" type="number" min="0" value="">
 
                   <button class="quantity-change number-plus" type="button"
-                    onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange;">+</button>
+                    onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.dispatchEvent(new Event('change'));">+</button>
 
                 </div>
 
-                <button class="buyBtn" data-candy_id="<%= product.id %>" data-cost="<%= product.cost %>"
+                <button class="buyBtn" data-product_id="<%= product.id %>" data-cost="<%= product.cost %>"
                   data-action="addToCart" type="button">В
                   корзину</button>
               </div>

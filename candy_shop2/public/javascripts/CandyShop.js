@@ -6,71 +6,96 @@ const CandyShop = {
 
                 this.buildOrderList();
                 this.sendOrderData();
+                this.changeTotalCost();
 
         },
 
-        Dom: {
+        dom: {
+                // container for all products
                 $containerForProductList: document.getElementById("productList"),
+
+                //div for product item
                 $productCart: document.getElementsByClassName("product-card"),
+
+                // <button class="buyBtn" data-candy_id="<%= product.id %>" data-cost="<%= product.cost %>"
                 $buyBtn: document.querySelectorAll(".buyBtn"),
-                $quantityBtns: document.getElementsByClassName("quantity-change"),
+
+                //input for quantity of products
                 $inputs: document.querySelectorAll(".input"),
+
+                //button that show cart page
                 $cartButton: document.getElementById("cart-btn"),
         },
 
+
+        changeTotalCost() {
+                this.dom.$inputs.forEach((input) =>
+                        input.addEventListener('change', this.EventHandlers.countTotalCost));
+
+        },
+
         buildOrderList() {
-                let orderList = {};
 
-                localStorage.setItem('orderList', JSON.stringify(orderList));
+                if (typeof localStorage.getItem('orderList') === 'undefined') {
+                        localStorage.setItem('orderList', {});
+                }
 
-                this.Dom.$buyBtn.forEach((buttonItem) =>
-                        buttonItem.addEventListener('click', this.EventHandlers.clickHandler));
+                this.dom.$buyBtn.forEach((buttonItem) =>
+                        buttonItem.addEventListener('click', this.EventHandlers.buildOrder));
 
-                this.Dom.$inputs.value = "";
+
         },
 
         sendOrderData() {
 
-                this.Dom.$cartButton.addEventListener('click', this.EventHandlers.sendCartData);
+                this.dom.$cartButton.addEventListener('click', this.EventHandlers.sendCartData);
 
         },
 
-        changeCartQuantity() {
 
-        },
 
         EventHandlers: {
 
-                clickHandler(e) {
+
+
+                countTotalCost(e) {
+
+                        let div = e.target.parentNode.parentNode.previousElementSibling.querySelector(".totalCost");
+
+                        // let candyId = e.target.getAttribute("data-product_id");
+                        let cost = Number(e.target.getAttribute("data-cost"));
+                        let quantity = Number(e.target.value);
+                        let totalPrise = quantity * cost;
+
+                        div.innerHTML = totalPrise;
+
+                },
+
+
+                buildOrder(e) {
                         let orderList = JSON.parse(localStorage.getItem('orderList'));
 
-                        let candyId = e.target.getAttribute("data-candy_id");
+                        let candyId = e.target.getAttribute("data-product_id");
 
-                        let cost = +e.target.getAttribute("data-cost");
+                        let cost = Number(e.target.getAttribute("data-cost"));
 
-                        let quantity = +document.querySelector('input[data-id="' + candyId + '"]').value;
+                        let quantity = Number(document.querySelector('input[data-product_id="' + candyId + '"]').value);
 
 
-                        console.log(orderList);
+                        if (typeof orderList['item' + candyId] !== 'undefined') {
 
-                        quantity = (
-                                typeof orderList['item' + candyId] !== 'undefined' ?
-
-                                        orderList['item' + candyId].quantity : 0
-
-                        ) + quantity;
+                                quantity = orderList['item' + candyId].quantity + quantity;
+                        }
 
                         let totalCost = cost * quantity;
+
 
                         orderList['item' + candyId] = {
 
                                 candyId, totalCost, quantity
                         };
 
-                        console.log(candyId, `quant="${quantity}"`);
-
                         localStorage.setItem('orderList', JSON.stringify(orderList));
-
 
                 },
 
