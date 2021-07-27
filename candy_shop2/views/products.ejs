@@ -5,36 +5,41 @@
     <h1>Home</h1>
     <div class="slider">
       <div class="slider-line">
-        <img src="https://vchaspik.ua/sites/default/files/styles/600x/public/story/u12449/0_118.jpg?itok=Hq60azmR"
-          alt="">
+        <% products.forEach(function(product){%>
+
+          <img src="../images/img/<%= product.url %>">
+
+          <% }) %>
+
 
       </div>
     </div>
-    <button class="slider-prev">Prev</button>
-    <button class="slider-next">Next</button>
-
-
-
-    <div class="select-grupe">
-      <select name="sortProduct" id="productSelectBy">
-        <option value="all">Все товары</option>
-        <option value="priceLow">Цена по убыванию</option>
-        <option value="priceHigh">Цена по возрастанию</option>
-        <option value="newProduct">Новинки</option>
-        <option value="promotions">Акционные</option>
-      </select>
-      <select name="categoriSelect" id="categoriSelect">
-        <option value="">Выберите категорию</option>
-
-      </select>
+    <div class="button-grup">
+      <button class="slider-prev">Prev</button>
+      <button class="slider-next">Next</button>
     </div>
+
+
+    <div class="serch-priсe">
+      <label>
+        <span>Цена от</span>
+        <input id="priсe-from" type="number" min="0" value="1">
+        <span>Цена до</span>
+        <input id="priсe-to" type="number" min="0" value="1001">
+      </label>
+      <button type="button" id="init-serch">Сортировать по цене</button>
+
+    </div>
+
 
     <div id="productList">
       <% products.forEach(function(product){ %>
-        <div class="product-card" data-product_id="<%= product.id %>">
+        <div class="product-card" data-cost="<%= product.cost %>" data-product_id="<%= product.id %>">
 
           <figure>
+
             <img class="product-img" src="../images/img/<%= product.url %>">
+
             <figcaption>
               <a href="/product?id=<%= product.id %>&name=<%= product.name %>">
                 <h2>
@@ -63,8 +68,10 @@
                 </div>
 
                 <button class="buyBtn" data-product_id="<%= product.id %>" data-cost="<%= product.cost %>"
-                  data-action="addToCart" type="button">В
-                  корзину</button>
+                  data-action="addToCart" type="button">
+
+                  В корзину</button>
+
               </div>
             </figcaption>
 

@@ -1,0 +1,87 @@
+
+
+@import "../common/varMixin.scss";
+@import "../common/vars.scss";
+@import "../common/common.scss";
+
+main {
+
+  .cart-container {
+
+    margin: auto;
+    padding: 15px 10px;
+    width: 130vh;
+   
+    .title {
+      text-align: center;
+      margin-bottom: 40px;
+      margin-top: 20px;
+    }
+  
+        .table {
+          margin: 0 auto;
+          border: 1px solid;
+          border-radius: 5px;
+          padding: 10px;
+          
+              .table-head-row {
+                background: #495274;
+                padding: 10px;
+                height: 5vh;
+              }
+  
+              .product-img {
+                width: 100%;
+              }
+  
+   
+              
+              .input {
+                display: block;
+                  height: 32px;
+                  line-height: 32px;
+                  width: 100%;
+                  padding: 0;
+                  margin: 0;
+                  box-sizing: border-box;
+                  text-align: center;
+                  background: $bodyBgd;
+              }
+  
+                
+              
+            
+          }
+  
+    .client-info-section {
+
+          form {
+
+            .user-contacts {
+                margin: 10px;
+                display: flex;
+
+                label {
+
+                  .input{
+                    display: block;
+                    height: 32px;
+                    line-height: 32px;
+                    width: 100%;
+                    padding: 0;
+                    margin: 0;
+                    box-sizing: border-box;
+                    text-align: center;
+                    background: $bodyBgd;
+                  }
+              }
+            }
+      }
+
+
+    }
+  
+  
+  
+  }
+}

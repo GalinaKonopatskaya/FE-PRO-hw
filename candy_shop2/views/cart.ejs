@@ -1,74 +1,133 @@
 <%- include ('layout/header.ejs'); -%>
 
-<main class="container">
-        <h1 class="title">Оформление заказа</h1>
+        <main>
 
-        <div id="productList">
-        
-                <% products.forEach(function(product){ %>
-                        <div class="product-card" data-product_id="<%= product.id %>"
-                                data-product_url="<%= product.url %>">
-        
-                                <figure>
-                                        <img class="product-img" src="../images/img/<%= product.url %>">
-                                        <figcaption>
-                                                <a href="/product?id=<%= product.id %>&name=<%= product.name %>">
-                                                        <h2>
-                                                                <%= product.name %>
-                                                        </h2>
-                                                </a>
-                                                <div class="cost">
-                                                        <p class="prise"> Цена за 1шт. <%= product.cost %>
-                                                        </p>
-                                                        <p class="total-prise" data-product_id="<%= product.id %>">
-                                                                Итого: <span class="totalCost"> 00.00
-                                                                </span> </p>
-        
-                                                </div>
-                                                <div class="cart">
-                                                        <div class="number">
-        
-                                                                <button class="quantity-change number-minus"
-                                                                        type="button"
-                                                                        onclick="this.nextElementSibling.stepDown();this.nextElementSibling.dispatchEvent(new Event('change'));">-</button>
-        
-                                                                <input class="input" placeholder="0"
-                                                                        data-cost="<%= product.cost %>"
-                                                                        data-product_id="<%= product.id %>"
-                                                                        data-action="Change-quantity" type="number"
-                                                                        min="0" value="">
-        
-                                                                <button class="quantity-change number-plus"
-                                                                        type="button"
-                                                                        onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.dispatchEvent(new Event('change'));">+</button>
-        
-                                                        </div>
-        
-                                                        <button class="buyBtn" data-product_id="<%= product.id %>"
-                                                                data-cost="<%= product.cost %>" data-action="addToCart"
-                                                                type="button">В
-                                                                корзину</button>
-                                                </div>
-                                        </figcaption>
-        
-                                </figure>
-        
+                <div class="cart-container">
+
+                        <h1 class="title">Оформление заказа</h1>
+
+                        <table class="table">
+                                <tr class="table-head-row">
+                                        <th>Изображение</th>
+                                        <th>Наименование товара</th>
+                                        <th>Количество</th>
+                                        <th>Цена за ед.</th>
+                                        <th>Стоимость</th>
+                                        <th>Отмена</th>
+                                </tr>
+                                <tr>
+                                        <% products.forEach(function(product){ %>
+                                                <td><img class="product-img" src="../images/img/<%= product.url %>">
+                                                </td>
+                                                <td>
+                                                        <%= product.name %>
+                                                </td>
+                                                <td>
+                                                        <input class="cart-product-quantity input" type="number" min="0"
+                                                        data-product_id="item<%= product.id %>"  value="<%= product.quantity%>">
+                                                </td>
+                                                <td>
+                                                        <input class="cart-product-price input" type="number" min="0"
+                                                                value="<%= product.cost %>" readonly>
+                                                </td>
+                                                <td>
+                                                        <input class="cart-product-cost input" type="number" min="0"
+                                                                value="<%= product.totalCost %>" readonly>
+                                                </td>
+                                                <td class="drop-item">Х</td>
+                                </tr>
+                                <% }); %>
+
+                                        <tr>
+                                                <td colspan="5" style="text-align:right">ИТОГО:</td>
+                                                <td id="cart-total-cost">0</td>
+                                        </tr>
+                        </table>
+
+                        <div class="client-info-section">
+                                <form class="userForm" name="userForm" action="/order" method="post">
+
+                                        <h3 class="title">Личные данные</h3>
+                                        <div class="user-contacts">
+                                                <label>Имя*
+                                                        <input placeholder="Имя" name="username" type="text" value=""
+                                                                required />
+                                                </label>
+                                                <label>Фамилия*
+                                                        <input placeholder="Фамилия" name="usersurname" type="text"
+                                                                value="" required />
+                                                </label>
+                                                <label>Телефон*
+                                                        <input name="userphone" type="tel" value="" required />
+                                                </label>
+                                                <label>E-mail*
+                                                        <input type="email" name="email" placeholder="E-mail" value=""
+                                                                required />
+                                                </label>
+                                        </div>
+                                        <h3 class="title">Адрес доставки</h3>
+                                        <label>
+                                                <select name="country" id="country">
+                                                        <option value="ukr">Украина</option>
+                                                </select>
+                                        </label>
+                                        <label>
+                                                <select name="region" id="region">
+                                                        <option value="">---Выберети---</option>
+
+                                                </select>
+                                        </label>
+                                        <label>
+                                                <input id="city" type="text" placeholder="Город">
+                                        </label>
+                                        <label>
+                                                <input id="adress" type="text" placeholder="Адрес доставки">
+                                        </label>
+
+                                        <h3 class="title"> Способ доставки</h3>
+                                        <div>
+                                                <input type="radio" id="newPost" name="deliveryMethod" value="newPost"
+                                                        checked>
+                                                <label for="huey">Новая почта</label>
+                                        </div>
+                                        <div>
+                                                <input type="radio" id="inTime" name="deliveryMethod" value="inTime">
+                                                <label for="dewey">Интайм</label>
+                                        </div>
+                                        <div>
+                                                <input type="radio" id="ukrPost" name="deliveryType" value="ukrPost">
+                                                <label for="louie">Укр. почта</label>
+                                        </div>
+                                        <h3 class="title"> Способ оплаты</h3>
+                                        <div>
+                                                <input type="radio" id="c_o_d" name="payMethod" value="c_o_d" checked>
+                                                <label for="huey">Наложный платеж</label>
+                                        </div>
+
+                                        <div>
+                                                <input type="radio" id="card" name="payMethod" value="card">
+                                                <label for="dewey">Оплата картой</label>
+                                        </div>
+
+                                        <div>
+                                                <input type="radio" id="cash" name="payMethod" value="cash">
+                                                <label for="louie">Наличными при получении</label>
+                                        </div>
+
+
+                                        <h3 class="title">Комментарий</h3>
+                                        <label>
+                                                <input id="comment" type="text" placeholder="Комментарий к заказу">
+                                        </label>
+
+
+                                        <button id="submitUserData" type="submit">Все данные верны, оформить
+                                                заказ</button>
+
+                                </form>
                         </div>
-                        <% }); %>
-        
-        </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-</main>        
+                </div>
+        </main>
 
 
 

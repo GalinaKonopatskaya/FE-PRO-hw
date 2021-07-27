@@ -10,6 +10,7 @@ const conf = require('./config'); // конфиги
 const staticAsset = require('static-asset');
 
 
+const candyshop = require('./routes/cs');
 
 
 // -- экспорт своих классов помощников
@@ -25,7 +26,9 @@ app.use(cors()); //прослойка для cors запросов
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/', express.static('public'))
+app.use('/', express.static('public'));
+
+app.use('/api/candyshop', candyshop);
 
 
 
@@ -74,9 +77,6 @@ app.get('/category', function (req, res) {
   })
 
 });
-
-
-
 
 
 
@@ -147,24 +147,36 @@ app.get('/delivery', (req, res) => {
 });
 
 
-app.get('/cart', (req, res) => {
+// app.get('/cart', (req, res) => {
 
-  Promise.all([Model.getProducts(), Model.getGroups()]).then((values) => {
+//   Promise.all([Model.getProducts(), Model.getGroups()]).then((values) => {
 
 
-    let products = JSON.parse(values[0])
-    let groups = JSON.parse(values[1])
-    let product = null;
 
-    products.forEach(el => {
-      if (el.id == req.query.id) {
-        product = el
-      }
-    })
 
-    res.render('cart', { product: product, groups: groups });
+//     let products = JSON.parse(values[0])
+//     let groups = JSON.parse(values[1])
+//     let product = null;
 
-  })
+//     products.forEach(el => {
+//       if (el.id == req.query.id) {
+//         product = el
+//       }
+//     })
+
+//     res.render('cart', { product: product, groups: groups });
+
+
+//   })
+
+// });
+
+
+app.post('/order', (req, res) => {
+
+  console.log(req.body)
+
+  res.render('error')
 
 });
 
@@ -193,6 +205,24 @@ app.get('/error', (req, res) => {
 
 
 
+
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+
+// error handler
+// eslint-disable-next-line no-unused-vars
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.render('error', {
+    message: error.message,
+    error: "error"
+  });
+});
 
 
 

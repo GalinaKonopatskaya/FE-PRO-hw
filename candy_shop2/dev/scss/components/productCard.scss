@@ -20,8 +20,6 @@
                         border-radius: 4px;
                         overflow: auto;
 
-
-
                         figure { 
                                 padding: 10px;
                                 
@@ -55,7 +53,7 @@
                                                
 .number {
         text-align: center;
-	width: 200px;
+
 	margin: 0 auto;
 	padding: 20px 0;
 	// display: inline-block;
@@ -106,9 +104,9 @@
 }
 
                                                 button {
-                                                        background-color: #e95252;
+                                                        background-color: $buttonBgd;
                                                         border: none;
-                                                        color: white;
+                                                        color: $centerText;
                                                         padding: 10px;
                                                         text-decoration: none;
                                                         margin: 4px 2px;

@@ -99,6 +99,7 @@
                                                 padding: 5px;
                                                 a {
                                                         @include centerTextStyle(5px, 0px, 0px, 5px);
+                                                        cursor: pointer;
  
 
                                                 }

@@ -1,6 +1,10 @@
 @import "./vars";
 @import "./varMixin.scss";
 
+body {
+  background: $bodyBgd;
+}
+
 .container {
 
     max-width: $max-width;
