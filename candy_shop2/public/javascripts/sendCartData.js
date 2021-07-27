@@ -72,7 +72,7 @@ function updateCartInLocal() {
 
         let orderList = JSON.parse(localStorage.getItem('orderList')) || {};
 
-        
+
         for (item in orderList) {
                 orderList[item].quantity = ;
         }
